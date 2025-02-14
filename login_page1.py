@@ -26,7 +26,7 @@ ScreenManager:
 
         MDTopAppBar:
             title: "Job Portal"
-            elevation: 10
+            elevation: 9
             
         MDBoxLayout:
             orientation: "vertical"
