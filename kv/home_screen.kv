@@ -1,0 +1,207 @@
+<HomeScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+
+        MDTopAppBar:    
+            title: "Job Portal"
+            md_bg_color: 0, 0, 0.5, 1
+            right_action_items: [["bell", lambda x: app.show_notifications()], ["account", lambda x: app.sign_in()]]
+        
+        MDBoxLayout:
+            id: "main_section"
+            orientation: "vertical"
+            padding: dp(50)
+            size_hint_y: None
+            height: self.minimum_height  
+            spacing: dp(50)
+
+            MDBoxLayout:
+                id: "search_section"
+                orientation: "horizontal"
+                size_hint_y: None
+                height: self.minimum_height
+                size_hint_x: 0.5
+                pos_hint: {"center_x": 0.5}
+                spacing: dp(20)
+
+                MDTextField:
+                    hint_text: "Search for Jobs"
+                    mode: "rectangle"
+                    radius: [8]
+                    icon_left: "magnify"
+                
+                MDTextField:
+                    hint_text: "Location"
+                    mode: "rectangle"
+                    radius: [8]
+                    icon_left: "map-marker" 
+                MDRaisedButton:
+                    size_hint_y: 0.8
+                    elevation: 1
+                    text: "Search"
+                    md_bg_color: 0, 0, 0.5, 1
+                    font_name: "Roboto-Bold"  # Make the text bold!
+                    font_size: "16sp"
+
+        MDBoxLayout:
+            orientation: 'horizontal'
+            padding: [dp(30), 0, 0, 0]
+
+            MDBoxLayout:
+                id: filter_section
+                size_hint_x: 0.2    
+                padding: dp(30)
+
+                MDCard:  
+                    orientation: "vertical"
+                    elevation: 1
+                    theme_shadow_color: "Custom"
+                    shadow_color: "green"
+                    theme_bg_color: "Custom"
+                    md_bg_color: "white"
+                    md_bg_color_disabled: "grey"
+                    theme_shadow_offset: "Custom"
+                    shadow_offset: (1, -2)
+                    theme_shadow_softness: "Custom"
+                    shadow_softness: 1
+                    theme_elevation_level: "Custom"
+                    elevation_level: 2  
+
+                    MDBoxLayout: 
+                        md_bg_color: 0, 0, 0.5, 1
+                        radius: [20, 20, 0, 0]
+                        size_hint_y: 0.2
+                        MDLabel: 
+                            text: "Filter"
+                            halign: "center"  
+                            bold: True 
+                            font_size: "25sp"
+                            theme_text_color: "Custom"
+                            text_color: 1, 1, 1, 1
+                            radius: [20, 20, 0, 0]
+
+                    MDBoxLayout:
+                        orientation: "vertical" 
+                        size_hint_y: None
+                        height: self.minimum_height
+                        MDLabel:  
+                            text: "Location"
+                            halign: "center"
+                            size_hint_y: None   
+                            height: dp(40)  
+                            pos_hint: {"center_x": 0.5}
+
+                        MDBoxLayout:
+                            id: scroll_location
+                            size_hint_y: None
+                            height: dp(150)
+                            padding: dp(10)
+
+                            MDBoxLayout:
+                                md_bg_color: 0.8, 0.8, 0.8, 1
+                                radius: [10, 10, 10, 10]
+                                MDScrollView:
+                                    spacing: dp(10)   
+                                    do_scroll_x: False   
+                                    do_scroll_y: True 
+
+                                    MDBoxLayout: 
+                                        id: location_box
+                                        orientation: "vertical"
+                                        size_hint_y: None
+                                        height: self.minimum_height  
+                        Widget:  
+                    MDBoxLayout:
+                        id: Job_type
+                        orientation: "vertical"
+                        spacing: dp(20)  
+                        MDLabel:
+                            text: "Job Type"
+                            halign: "center"
+                            size_hint_y: None   
+                            height: dp(40)  
+                            pos_hint: {"center_x": 0.5} 
+                        MDBoxLayout:
+                            orientation: "vertical" 
+                            MDBoxLayout:
+                                orientation: "horizontal" 
+                                spacing: dp(20)
+                                MDBoxLayout: 
+                                    size_hint_x: 0.4 
+                                    MDLabel: 
+                                        text: "Remote"
+                                    MDCheckbox:
+                                        size_hint_x: 0.3
+                                        pos_hint: {"center_y": 0.5}
+                                MDBoxLayout:
+                                    size_hint_x: 0.5 
+                                    MDLabel: 
+                                        text: "OnCampus"
+                                    MDCheckbox:
+                                        size_hint_x: 0.3
+                                        pos_hint: {"center_y": 0.5} 
+                            
+            MDBoxLayout:
+                size_hint_x: 0.8 
+            
+                MDScrollView:
+                    id: "Job-Section"
+                    size_hint_y: 1   
+                    do_scroll_x: False   
+                    do_scroll_y: True   
+
+                    MDBoxLayout:
+                        orientation: "horizontal"
+                        size_hint_y: None
+                        height: self.minimum_height
+                        padding: dp(30)  
+
+                        MDGridLayout:
+                            id: jobs_grid
+                            cols: 2
+                            spacing: dp(30)
+                            padding: dp(20)
+                            size_hint_y: None
+                            height: self.minimum_height 
+                            size_hint_x: None
+                            width: self.minimum_width 
+
+                            MDCard:
+                                size_hint_y: None
+                                height: "200dp"
+                                size_hint_x: None
+                                width: "300dp"
+                                md_bg_color: 0.95, 0.95, 0.95, 1
+                                elevation: 1
+
+                                MDBoxLayout:
+                                    orientation: "vertical"
+                                    spacing: "6dp"
+                                    MDLabel:
+                                        text: "Software Developer"
+                                        bold: True
+                                        font_size: "17sp" 
+         
+        MDBoxLayout:
+            id: "Bottom_section"
+            orientation: "horizontal" 
+            size_hint_y: None   
+            height: dp(60)    
+
+            MDBottomNavigation:
+                text_color_active: 0, 0, 0.5, 1  
+                MDBottomNavigationItem:
+                    name: "jobs"
+                    text: "Jobs"
+                    icon: "briefcase-search"
+
+                MDBottomNavigationItem:
+                    name: "saved"
+                    text: "Saved"
+                    icon: "bookmark"
+
+                MDBottomNavigationItem:
+                    name: "profile"
+                    text: "Profile"
+                    icon: "account"
+                    on_tab_press: app.open_profile()
